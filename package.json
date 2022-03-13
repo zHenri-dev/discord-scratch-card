@@ -1,0 +1,21 @@
+{
+  "name": "scratch-card",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "colors": "^1.4.0",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "moment": "^2.29.1",
+    "mongoose": "^6.2.6"
+  }
+}
