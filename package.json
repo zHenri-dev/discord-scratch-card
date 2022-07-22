@@ -1,21 +1,20 @@
 {
   "name": "scratch-card",
   "version": "1.0.0",
-  "description": "Sistema de raspadinha.",
-  "main": "index.js",
+  "description": "Sistema de raspadinhas dentro do Discord.",
+  "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon ."
   },
   "keywords": [],
   "author": "zHenri",
   "license": "ISC",
-  "devDependencies": {
-    "colors": "^1.4.0",
-    "nodemon": "^2.0.15"
-  },
   "dependencies": {
-    "discord.js": "^13.6.0",
-    "moment": "^2.29.2",
-    "mongoose": "^6.2.10"
+    "discord.js": "^14.0.3",
+    "moment": "^2.29.4",
+    "mongoose": "^6.4.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
   }
 }

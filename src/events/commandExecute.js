@@ -6,10 +6,10 @@ module.exports = class {
 
     async run(message) {
         try {
-            if (message.author.bot === true) return;
+            if (!message.guild || message.author.bot === true) return;
 
-            let prefix = this.client.config.prefix;;
-            if (message.mentions.has(this.client.user) || message.content.startsWith(prefix)) {
+            let defaultPrefix = this.client.config.defaultPrefix;
+            if (message.mentions.has(this.client.user) || message.content.startsWith(defaultPrefix)) {
                 let args;
                 let commandName;
                 let command;
@@ -17,16 +17,16 @@ module.exports = class {
                 if (message.mentions.has(this.client.user)) {
                     args = message.content.slice(`<@!905200917534629949>`.length).trim().split(/ +/g);
                     commandName = args.shift().toLowerCase();
-                } else if (message.content.startsWith(prefix)) {
-                    args = message.content.slice(prefix.length).trim().split(/ +/g);
+                } else if (message.content.startsWith(defaultPrefix)) {
+                    args = message.content.slice(defaultPrefix.length).trim().split(/ +/g);
                     commandName = args.shift().toLowerCase();
                 }
 
-                if (commandName.length == 0 && message.mentions.has(this.client.user)) return message.reply(`Olá! Meu prefixo aqui é **${prefix}**.`);
+                if (commandName.length == 0 && message.mentions.has(this.client.user)) return message.reply(`Olá! Meu prefixo aqui é **${defaultPrefix}**.`).catch(() => { });
                 else if (commandName.length == 0) return
 
                 command = this.client.commands.get(commandName) || this.client.commands.get(this.client.aliases.get(commandName))
-                if (command) try {  command.run({ args, message, prefix }); } catch (error) { console.log(error); console.log(colors.red(`[Commands] Ocorreu um erro ao executar o comando ${commandName}.`)) }
+                if (command) try { command.run({ message, args, prefix: defaultPrefix }); } catch (error) { console.log(error); console.log(`\x1b[91m[Commands] Ocorreu um erro ao executar o comando ${commandName}.\x1b[0m`) }
             }
         } catch (error) {
             if (error) console.error(error);

@@ -1,12 +1,11 @@
 module.exports = class Command {
     constructor(client) {
         this.client = client;
-
         this.name = "daily";
         this.aliases = [];
     }
 
-    async run({ args, message, prefix }) {
+    async run({ message }) {
         try {
             let user = await this.client.database.users.findOne({ userId: message.author.id });
             if (!user) {
@@ -19,7 +18,7 @@ module.exports = class Command {
                 })
             }
             if (user.cooldown > new Date().getTime()) {
-                let time = await this.client.functions.getFormatedTime(user.cooldown);
+                let time = await this.client.functions.getFormattedTime(user.cooldown);
                 message.reply(`Você deve aguardar mais **${time}** para coletar novamente para pegar suas moedas diárias.`).then(msg => { setTimeout(() => { msg.delete().catch(() => { }); if (message.guild) { message.delete().catch(() => { }); } }, 15000); })
                 return;
             }

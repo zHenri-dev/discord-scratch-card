@@ -1,7 +1,6 @@
 module.exports = class Command {
     constructor(client) {
         this.client = client;
-
         this.name = "setcoins";
         this.aliases = ["setmoedas", "setarmoedas"];
     }
@@ -14,7 +13,7 @@ module.exports = class Command {
                 return;
             }
             if (!args[0] || !args[1] || !args[2]) {
-                message.reply(`O uso correto do comando é **${prefix}coins (add/remove) (menção ou id) (quantia)**.`).then(msg => { setTimeout(() => { msg.delete().catch(() => { }); if (message.guild) { message.delete().catch(() => { }); } }, 15000); })
+                message.reply(`O uso correto do comando é **${prefix}setcoins (add/remove) (menção ou id) (quantia)**.`).then(msg => { setTimeout(() => { msg.delete().catch(() => { }); if (message.guild) { message.delete().catch(() => { }); } }, 15000); })
                 return;
             }
             let target = await message.mentions.members.first() || await message.guild.members.cache.get(args[1]);
@@ -53,7 +52,7 @@ module.exports = class Command {
                     message.reply(`Foram removida(s) **${amount} moedas** da conta do membro **${target.user.tag}** com sucesso!`).then(msg => { setTimeout(() => { msg.delete().catch(() => { }); if (message.guild) { message.delete().catch(() => { }); } }, 30000); })
                     break;
                 default:
-                    message.reply(`O uso correto do comando é **${prefix}coins (add/remove) (menção ou id)**.`).then(msg => { setTimeout(() => { msg.delete().catch(() => { }); if (message.guild) { message.delete().catch(() => { }); } }, 15000); })
+                    message.reply(`O uso correto do comando é **${prefix}setcoins (add/remove) (menção ou id)**.`).then(msg => { setTimeout(() => { msg.delete().catch(() => { }); if (message.guild) { message.delete().catch(() => { }); } }, 15000); })
                     break;
             }
         } catch (error) {

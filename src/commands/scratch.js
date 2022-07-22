@@ -1,14 +1,11 @@
-const { MessageEmbed } = require("discord.js");
-
 module.exports = class Command {
     constructor(client) {
         this.client = client;
-
         this.name = "scratch";
         this.aliases = ["raspadinha"];
     }
 
-    async run({ args, message, prefix }) {
+    async run({ args, message }) {
         try {
             let user = await this.client.database.users.findOne({ userId: message.author.id });
             if (!user) {
